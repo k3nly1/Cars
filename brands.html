@@ -4,24 +4,204 @@
   <meta charset="utf-8">
   <meta name="author" content="Author: Lipesiy Maksim">
   <title>Car Brands</title>
-  </head>
+  <style>
+    body {
+      background-image: url('images/background.jpg');
+      background-attachment: fixed;
+      background-size: cover;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+    header, main, footer {
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 20px;
+      margin: 10px 0;
+      border-radius: 8px;
+    }
+    a {
+      color: #0066cc;
+      text-decoration: none;
+    }
+    a:hover {
+      color: #0044aa;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+    table th {
+      background-color: #ff6b6b;
+      color: white;
+      padding: 10px;
+    }
+    table td {
+      border: 1px solid #ddd;
+      padding: 10px;
+    }
+    .small-image {
+      width: 100px;
+      height: 100px;
+    }
+    .large-image {
+      width: 400px;
+      height: 400px;
+    }
+  </style>
+</head>
 <body>
   <header>
-    <h1>Famous Brands</h1>
+    <h1>🚗 Famous Brands</h1>
     <nav>
       <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="history.html">History</a></li>
-        <li><a href="brands.html">Brands</a></li>
-        <li><a href="electric-cars.html">Electric Cars</a></li>
+        <li><a href="index.html" style="color: #0066cc;">Home</a></li>
+        <li><a href="history.html" style="color: #0066cc;">History</a></li>
+        <li><a href="brands.html" style="color: #0066cc;">Brands</a></li>
+        <li><a href="electric-cars.html" style="color: #0066cc;">Electric Cars</a></li>
       </ul>
     </nav>
   </header>
   <main>
-    <p>A short list of popular brands: Toyota, BMW, Mercedes, Ford, Honda, and others.</p>
+    <h2>Popular Car Brands</h2>
+    <p>A short list of popular brands: <strong>Toyota</strong>, <strong>BMW</strong>, <strong>Mercedes</strong>, <strong>Ford</strong>, <strong>Honda</strong>, and others.</p>
+
+    <p>The automotive industry has produced many legendary brands over the decades. Each brand has its own unique history, philosophy, and approach to engineering. <em>From luxury vehicles to everyday cars</em>, the world's car manufacturers continue to innovate and improve their products.</p>
+
+    <p>Learn more about the <a href="#european-brands" style="color: #0066cc;">European brands</a>, <a href="history.html" style="color: #0066cc;">the history of automobiles</a>, or explore <a href="https://www.wikipedia.org" target="_blank" style="color: #0066cc;">Wikipedia's automotive section</a> for more information.</p>
+
+    <h3 id="major-manufacturers">Major Manufacturers Worldwide</h3>
+    
+    <p>Some of the most recognized automotive companies include:</p>
+    <ul type="disc">
+      <li><strong>Toyota</strong> - A Japanese multinational automotive manufacturer</li>
+      <li><strong>Volkswagen Group</strong> - European automotive conglomerate</li>
+      <li><strong>General Motors</strong> - American automotive manufacturer</li>
+    </ul>
+
+    <h3 id="european-brands">European Brands</h3>
+    <ol type="A">
+      <li>BMW - Bavarian Motor Works</li>
+      <li>Mercedes-Benz - German luxury vehicle manufacturer</li>
+      <li>Audi - Premium automobile brand</li>
+      <li>Porsche - High-performance sports car brand</li>
+    </ol>
+
+    <h3>Brand Features</h3>
+    <dl>
+      <dt><strong>Luxury Segment</strong></dt>
+      <dd>High-end vehicles with premium features and superior construction - Mercedes, BMW, Lexus</dd>
+      <dt><strong>Performance Segment</strong></dt>
+      <dd>Sports cars and high-performance vehicles - Porsche, Ferrari, Lamborghini</dd>
+      <dt><strong>Economy Segment</strong></dt>
+      <dd>Affordable and practical vehicles - Toyota, Honda, Hyundai</dd>
+    </dl>
+
+    <h3>Brand Gallery</h3>
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; margin: 20px 0; justify-content: center;">
+      <div style="text-align: center;">
+        <a href="images/brand1.jpg" target="_blank">
+          <img src="images/brand1.jpg" alt="Автомобіль 1" width="240" height="180" style="border-radius: 8px; border: 2px solid #0066cc; object-fit: cover;">
+        </a>
+        <p style="margin-top: 10px; font-weight: bold; color: #0066cc;">Continental GT</p>
+        <p style="font-size: 12px; color: #666; margin: 0;">Bentley</p>
+      </div>
+
+    
+      <div style="text-align: center;">
+        <a href="images/brand2.jpg" target="_blank">
+          <img src="images/brand2.jpg" alt="Автомобіль 2" width="120" height="90" style="border-radius: 8px; border: 2px solid #0066cc; object-fit: cover;">
+        </a>
+        <p style="margin-top: 10px; font-weight: bold; color: #0066cc;">AMG-GT</p>
+        <p style="font-size: 12px; color: #666; margin: 0;">Mercedes</p>
+      </div>
+
+      
+      <div style="text-align: center;">
+        <a href="images/brand3.jpg" target="_blank">
+          <img src="images/brand3.jpg" alt="Автомобіль 3" width="480" height="360" style="border-radius: 8px; border: 2px solid #0066cc; object-fit: cover;">
+        </a>
+        <p style="margin-top: 10px; font-weight: bold; color: #0066cc;">X5</p>
+        <p style="font-size: 12px; color: #666; margin: 0;">BMW</p>
+      </div>
+    </div>
+
+    <h3>Top Brands Comparison Table</h3>
+    <table>
+      <caption>Major Car Brands Overview</caption>
+      <thead>
+        <tr>
+          <th>Brand Logo</th>
+          <th>Brand Name</th>
+          <th>Official Website</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="images/toyota-logo.png" target="_blank"><img src="images/toyota-logo.png" alt="Toyota" class="small-image"></a></td>
+          <td>Toyota</td>
+          <td><a href="https://www.toyota.com" target="_blank" style="color: #0066cc;">toyota.com</a></td>
+          <td>Japanese automotive leader in reliability</td>
+        </tr>
+        <tr>
+          <td><a href="images/bmw-logo.png" target="_blank"><img src="images/bmw-logo.png" alt="BMW" class="small-image"></a></td>
+          <td>BMW</td>
+          <td><a href="https://www.bmw.com" target="_blank" style="color: #0066cc;">bmw.com</a></td>
+          <td>Premium German luxury brand</td>
+        </tr>
+        <tr>
+          <td><a href="images/mercedes-logo.png" target="_blank"><img src="images/mercedes-logo.png" alt="Mercedes" class="small-image"></a></td>
+          <td>Mercedes-Benz</td>
+          <td><a href="https://www.mercedes-benz.com" target="_blank" style="color: #0066cc;">mercedes-benz.com</a></td>
+          <td>Iconic luxury and innovation</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Complex Brand Features Table</h3>
+    <table cellpadding="15" cellspacing="5" style="width: 100%; border: 2px solid #333;">
+      <colgroup>
+        <col style="background-color: #e8f4f8;">
+        <col style="background-color: #fff9e8;">
+        <col style="background-color: #ffe8e8;">
+      </colgroup>
+      <tr style="text-align: left;">
+        <th style="background-color: #333; color: white;">Feature</th>
+        <th style="background-color: #333; color: white;">Premium Brands</th>
+        <th style="background-color: #333; color: white;">Mass Market</th>
+      </tr>
+      <tr>
+        <td style="text-align: center;"><strong>Design</strong></td>
+        <td style="text-align: center;">Luxury styling</td>
+        <td style="text-align: center;">Practical design</td>
+      </tr>
+      <tr>
+        <td rowspan="2" style="text-align: center; vertical-align: middle;"><strong>Technology</strong></td>
+        <td style="text-align: center;">Advanced systems</td>
+        <td style="text-align: center;">Standard features</td>
+      </tr>
+      <tr>
+        <td colspan="2" style="background-color: #f0f0f0; text-align: center;"><em>All modern cars include basic safety features</em></td>
+      </tr>
+      <tr>
+        <td style="text-align: center;"><strong>Price Range</strong></td>
+        <td style="text-align: center;">$50,000+</td>
+        <td style="text-align: center;">$15,000-$35,000</td>
+      </tr>
+    </table>
+
+    <h3>Related Resources</h3>
+    <p>For more information, visit our <a href="#major-manufacturers" style="color: #0066cc;">major manufacturers section</a> on this page, or check out the <a href="history.html#automotive-evolution" style="color: #0066cc;">automotive evolution section on History page</a>.</p>
+
+    <h3>Interactive Map</h3>
+    <p>Explore major automobile manufacturing regions around the world:</p>
+    <iframe width="100%" height="400" style="border:0" src="https://www.openstreetmap.org/export/embed.html?bbox=2.2274,48.8155,2.4699,48.9021&layer=mapnik" title="Global Manufacturing Centers"></iframe>
+
   </main>
   <footer>
     <p>Author: Lipesiy Maksim</p>
+    <p><a href="index.html" style="color: #0066cc;">Back to Home</a></p>
   </footer>
 </body>
 </html>
