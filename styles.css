@@ -1,0 +1,400 @@
+
+
+/* СТИЛІ ДЛЯ BODY (Рівень документа)*/
+body {
+    background-color: #f5f5f5;
+    background-image: url('images/background.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+}
+
+/* СТИЛІ ДЛЯ ЗАГОЛОВКІВ (H1 - H6)*/
+h1 {
+    font-size: 2.5em;
+    color: #1a1a1a;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 1.2;
+    text-align: center;
+    margin: 20px 0;
+    letter-spacing: 1px;
+}
+
+h2 {
+    font-size: 2em;
+    color: #2c3e50;
+    font-style: italic;
+    font-weight: 600;
+    line-height: 1.3;
+    text-align: left;
+    margin: 18px 0;
+    letter-spacing: 0.5px;
+}
+
+h3 {
+    font-size: 1.5em;
+    color: #34495e;
+    font-weight: bold;
+    line-height: 1.4;
+    text-align: left;
+    margin: 15px 0;
+}
+
+h4 {
+    font-size: 1.3em;
+    color: #555;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1.5;
+    text-align: left;
+    margin: 12px 0;
+}
+
+h5 {
+    font-size: 1.1em;
+    color: #666;
+    font-weight: bold;
+    line-height: 1.6;
+    text-align: left;
+    margin: 10px 0;
+}
+
+h6 {
+    font-size: 1em;
+    color: #777;
+    font-weight: bold;
+    line-height: 1.6;
+    text-align: left;
+    margin: 8px 0;
+}
+
+/* СТИЛІ ДЛЯ ПОСИЛАНЬ */
+
+a {
+    color: #28a745;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-weight: 500;
+}
+
+a:hover {
+    color: #1e7e34 !important;
+    text-decoration: underline;
+}
+
+a:visited {
+    color: #551399;
+}
+
+
+.wiki-link {
+    color: #ff6600 !important;
+    font-weight: bold;
+}
+
+/* СТИЛІ ДЛЯ АБЗАЦІВ */
+p {
+    font-size: 16px;
+    color: #333;
+    line-height: 1.6;
+    margin: 10px 0;
+    text-align: left;
+}
+
+/* Унікальний ідентифікатор для конкретних абзаців - для застосування вбудованих стилів */
+#intro-paragraph {
+    font-size: 18px;
+    color: #1a5276;
+    font-style: italic;
+    font-weight: 600;
+    line-height: 1.8;
+    text-align: justify;
+    letter-spacing: 0.5px;
+    margin: 15px 0;
+}
+
+/* Клас для спеціальних абзаців */
+.featured-text {
+    background-color: #e7f3ff;
+    padding: 15px;
+    border-left: 4px solid #0066cc;
+    font-size: 17px;
+    color: #003d99;
+    font-weight: 500;
+}
+
+/* СТИЛІ ДЛЯ СПИСКІВ */
+
+/* Ненумеровані списки */
+ul {
+    list-style-type: disc;
+    margin: 15px 0;
+    padding-left: 30px;
+    font-size: 15px;
+    color: #334455;
+    line-height: 1.8;
+}
+
+ul li {
+    margin-bottom: 8px;
+    padding: 5px 0;
+}
+
+ul li:hover {
+    color: #0066cc !important;
+}
+
+/* Вкладені списки */
+ul ul {
+    list-style-type: circle;
+    margin: 10px 0 10px 20px;
+    padding-left: 25px;
+}
+
+ul ul ul {
+    list-style-type: square;
+    padding-left: 25px;
+}
+
+/* Нумеровані списки */
+ol {
+    list-style-type: decimal;
+    margin: 15px 0;
+    padding-left: 30px;
+    font-size: 15px;
+    color: #334455;
+    line-height: 1.8;
+    background-color: #f9f9f9;
+    padding: 20px 30px;
+    border-radius: 5px;
+    border-left: 4px solid #ff6b6b;
+}
+
+ol li {
+    margin-bottom: 8px;
+    padding: 5px 0;
+}
+
+ol li:first-child {
+    font-weight: bold;
+    color: #e63946;
+}
+
+/* Вкладені нумеровані списки */
+ol ol {
+    list-style-type: lower-alpha;
+    margin: 10px 0 10px 30px;
+}
+
+ol ol ol {
+    list-style-type: lower-roman;
+}
+
+/* Списки визначень */
+dl {
+    margin: 20px 0;
+    padding: 15px 20px;
+    background-color: #f0f8ff;
+    border: 1px solid #b3d9ff;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+dt {
+    font-weight: bold;
+    color: #003d99;
+    font-size: 16px;
+    margin-top: 12px;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #003d99;
+}
+
+dt:first-of-type {
+    margin-top: 0;
+}
+
+dd {
+    margin-left: 25px;
+    color: #555;
+    line-height: 1.6;
+    padding: 8px 0;
+    border-left: 3px solid #ff9800;
+    padding-left: 12px;
+    font-style: italic;
+}
+
+/* СТИЛІ ДЛЯ ТАБЛИЦЬ */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    background-color: #fff;
+    font-size: 15px;
+    color: #333;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+table thead {
+    background-color: #2c3e50;
+}
+
+table th {
+    background-color: #2c3e50;
+    color: white;
+    padding: 14px 16px;
+    border: 1px solid #1a252f;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: left;
+    letter-spacing: 0.5px;
+}
+
+table tbody tr {
+    border-bottom: 1px solid #e0e0e0;
+    transition: background-color 0.3s ease;
+}
+
+table tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+table tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+table td {
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+    color: #333;
+    line-height: 1.5;
+}
+
+table td:first-child {
+    font-weight: 500;
+    color: #1a1a1a;
+}
+
+table caption {
+    padding: 12px;
+    font-size: 17px;
+    font-weight: bold;
+    color: #2c3e50;
+    text-align: left;
+    background-color: #ecf0f1;
+    border: 1px solid #bdc3c7;
+    border-bottom: none;
+}
+
+/* UTILITY CLASSES & IDS */
+
+/* Unique identifier */
+#unique-id {
+    font-size: 18px;
+    color: #e63946;
+    font-style: italic;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/* Highlight class */
+.highlight {
+    background-color: #ffff00;
+    padding: 5px 8px;
+    border-radius: 3px;
+    font-weight: 500;
+}
+
+/* Special emphasis class */
+.emphasis {
+    color: #d32f2f;
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: 1.1em;
+}
+
+/* Container styles */
+header, main, footer {
+    background-color: rgba(255, 255, 255, 0.94);
+    padding: 24px;
+    margin: 15px 0;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Navigation styles */
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+nav li {
+    display: inline-block;
+}
+
+nav a {
+    display: block;
+    padding: 8px 15px;
+    border-radius: 4px;
+    background-color: #f0f0f0;
+    transition: all 0.3s ease;
+}
+
+nav a:hover {
+    background-color: #28a745;
+    color: white;
+}
+
+/* Image styles */
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.feature-image {
+    width: 180px;
+    height: 180px;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.small-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
+}
+
+.large-image {
+    width: 400px;
+    height: 400px;
+    border-radius: 8px;
+}
+
+.timeline-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 5px;
+}
+
+.ev-image {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+}
