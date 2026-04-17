@@ -4,74 +4,26 @@
   <meta charset="utf-8">
   <meta name="author" content="Author: Lipesiy Maksim">
   <title>Diesel Cars</title>
-  <!-- External CSS File -->
   <link rel="stylesheet" href="styles.css">
-  <!-- Internal Styles (Document-level) -->
-  <style>
-    body {
-      background-color: #e8f4f8;
-    
-      background-image: url('images/background.jpg');
-      background-attachment: fixed;
-      background-size: cover;
-      font-family: Georgia, serif;
-      margin: 0;
-      padding: 20px;
-    }
-    header, main, footer {
-      background-color: rgba(255, 255, 255, 0.97);
-      padding: 25px;
-      margin: 15px 0;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-    a {
-      color: #d9534f;
-      text-decoration: none;
-    }
-    a:hover {
-      color: #a93f37;
-      text-decoration: underline;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 20px 0;
-    }
-    table th {
-      background-color: #d9534f;
-      color: white;
-      padding: 12px;
-    }
-    table td {
-      border: 1px solid #ddd;
-      padding: 10px;
-    }
-    .timeline-image {
-      width: 150px;
-      height: 150px;
-    }
-  </style>
 </head>
 <body>
   <header>
     <h1>🚛 Diesel Cars</h1>
     <nav>
       <ul>
-        <li><a href="index.html" style="color: #d9534f;">Home</a></li>
-        <li><a href="diesel-cars.html" style="color: #d9534f;">Diesel Cars</a></li>
-        <li><a href="brands.html" style="color: #d9534f;">Brands</a></li>
-        <li><a href="electric-cars.html" style="color: #d9534f;">Electric Cars</a></li>
+        <li><a href="index.html" class="nav-diesel">Home</a></li>
+        <li><a href="diesel-cars.html" class="nav-diesel">Diesel Cars</a></li>
+        <li><a href="brands.html" class="nav-diesel">Brands</a></li>
+        <li><a href="electric-cars.html" class="nav-diesel">Electric Cars</a></li>
       </ul>
     </nav>
   </header>
   <main>
     <h2>The Diesel Engine & Its Legacy</h2>
-    <!-- Inline style applied to paragraph -->
-    <p style="font-size: 16px; color: #d9534f; font-weight: 500; line-height: 1.7; text-align: left; background-color: #ffe8e6; padding: 12px; border-radius: 5px;">Diesel engines have powered heavy transport, industry, and many passenger cars for more than a century. They are known for their durability, efficiency, and strong low-end torque.</p>
+    <p class="featured-text">Diesel engines have powered heavy transport, industry, and many passenger cars for more than a century. They are known for their durability, efficiency, and strong low-end torque.</p>
 
     <h3>Origins of Diesel Power</h3>
-    <p>In 1893, <strong>Rudolf Diesel</strong> patented the first compression-ignition engine that would later bear his name. Diesel engines became popular for ships, trains, and trucks due to their ability to run on heavier fuels and deliver high torque.</p>
+    <p id="intro-paragraph">In 1893, <strong>Rudolf Diesel</strong> patented the first compression-ignition engine that would later bear his name. Diesel engines became popular for ships, trains, and trucks due to their ability to run on heavier fuels and deliver high torque.</p>
 
     <p>Unlike gasoline engines, diesel engines ignite fuel through high compression rather than spark plugs. This makes them more fuel-efficient, but also means they require robust components and emissions control systems.</p>
 
@@ -83,6 +35,32 @@
       <li>1990s: Turbocharging and electronic injection improve performance and efficiency</li>
       <li>2000s: Emissions regulations drive adoption of diesel particulate filters and SCR systems</li>
       <li>2010s: Dieselgate prompts stricter testing and a shift toward alternative fuels</li>
+    </ul>
+
+    <h3>Modern Diesel Engine Features</h3>
+    <ul type="disc">
+      <li><strong>Fuel Efficiency</strong>
+        <ul>
+          <li>20-30% better fuel economy than gasoline engines
+            <ul>
+              <li>Urban driving: 5-6 L/100km</li>
+              <li>Highway driving: 3-4 L/100km</li>
+            </ul>
+          </li>
+          <li>Lower CO2 emissions per km</li>
+        </ul>
+      </li>
+      <li><strong>Engine Performance</strong>
+        <ul>
+          <li>High torque delivery at low RPM
+            <ul>
+              <li>300-500 Nm torque available from 1500 RPM</li>
+              <li>Excellent for towing and hauling</li>
+            </ul>
+          </li>
+          <li>Durable engine design lasting 300,000+ km</li>
+        </ul>
+      </li>
     </ul>
 
     <h3>Diesel Milestones</h3>
@@ -144,12 +122,12 @@
     <p>Some well-known automakers with notable diesel offerings include <strong>Mercedes-Benz</strong>, <strong>Volkswagen</strong>, <strong>BMW</strong>, and <strong>Volvo</strong>. Many manufacturers now balance diesel models with hybrids and electric vehicles.</p>
 
     <h3>Learn More</h3>
-    <p>Explore more about <a href="brands.html#european-brands" style="color: #d9534f;">European car brands</a> that built famous diesel models, or compare with <a href="electric-cars.html" style="color: #d9534f;">the future of electric vehicles</a>.</p>
+    <p>Explore more about <a href="brands.html#european-brands" class="nav-diesel">European car brands</a> that built famous diesel models, or compare with <a href="electric-cars.html" class="nav-diesel">the future of electric vehicles</a>.</p>
 
   </main>
   <footer>
     <p>Author: Lipesiy Maksim</p>
-    <p><a href="index.html" style="color: #d9534f;">Back to Home</a></p>
+    <p><a href="index.html" class="nav-diesel">Back to Home</a></p>
   </footer>
 </body>
 </html>
