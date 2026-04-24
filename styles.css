@@ -86,9 +86,25 @@ a {
     font-weight: 500;
 }
 
+a:link {
+    color: #d11787;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #6f42c1;
+    text-decoration: none;
+}
+
 a:hover {
     color: #1e7e34;
     text-shadow: 0 0 5px rgba(30, 126, 52, 0.3);
+}
+
+a:active {
+    color: #ff6b00;
+    font-weight: bold;
+    text-shadow: 0 0 8px rgba(255, 107, 0, 0.5);
 }
 
 a:focus {
@@ -171,7 +187,7 @@ ul > li {
 
 ul > li:hover {
     color: #0066cc;
-    background-color: rgba(0, 102, 204, 0.1);
+    background-color: rgb(255, 255, 255);
     padding-left: 15px;
 }
 
@@ -181,10 +197,6 @@ ul > ul {
     padding-left: 25px;
 }
 
-ul > ul > ul {
-    list-style-type: square;
-    padding-left: 25px;
-}
 
 ol {
     list-style-type: decimal;
@@ -222,9 +234,7 @@ ol > ol {
     margin: 10px 0 10px 30px;
 }
 
-ol > ol > ol {
-    list-style-type: lower-roman;
-}
+
 
 dl {
     margin: 20px 0;
@@ -408,9 +418,6 @@ nav > ul {
     gap: 15px;
 }
 
-nav > li {
-    display: inline-block;
-}
 
 nav a {
     display: block;
@@ -421,7 +428,15 @@ nav a {
     cursor: pointer;
     border: 2px solid transparent;
 }
-
+nav > a {
+    display: block;
+    padding: 8px 15px;
+    border-radius: 4px;
+    background-color: #f30101;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
 nav a:hover {
     background-color: #28a745;
     color: white;
@@ -430,10 +445,6 @@ nav a:hover {
     border-color: #1e7e34;
 }
 
-nav > a:active {
-    transform: translateY(0);
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
-}
 
 img {
     max-width: 100%;
@@ -660,4 +671,237 @@ a.nav-ev:hover {
 .ev-table-footer-highlight {
     background-color: #e8f5e9;
     padding: 12px;
+}
+
+/* Positioning и структурные элементы */
+.sidebar {
+    position: fixed;
+    right: 20px;
+    top: 100px;
+    width: 250px;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 100;
+}
+
+.sidebar:before {
+    content: "📌 Link";
+    display: block;
+    font-weight: bold;
+    color: #0275d8;
+    margin-bottom: 15px;
+    font-size: 16px;
+    border-bottom: 2px solid #0275d8;
+    padding-bottom: 10px;
+}
+
+.sidebar a {
+    display: block;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.sidebar a:last-child {
+    border-bottom: none;
+}
+
+.highlight-box {
+    position: relative;
+    background-color: #fff9e8;
+    padding: 15px;
+    margin: 20px 0;
+    border-left: 5px solid #ff9800;
+    border-radius: 5px;
+}
+
+.highlight-box:before {
+    content: "⭐";
+    position: absolute;
+    left: -15px;
+    top: 10px;
+    font-size: 24px;
+}
+
+.highlight-box:after {
+    content: " (important)";
+    color: #ff9800;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.info-panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #e3f2fd;
+    padding: 10px 15px;
+    border-radius: 0 0 10px 0;
+    font-size: 12px;
+    color: #0275d8;
+}
+
+
+.float-box {
+    float: right;
+    width: 300px;
+    background-color: #f0f8ff;
+    padding: 20px;
+    margin: 0 0 20px 20px;
+    border-radius: 8px;
+    border: 2px solid #0275d8;
+}
+
+.float-box:before {
+    content: "💡Navigation: ";
+    font-weight: bold;
+    color: #0275d8;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.float-box:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+span.highlight-text {
+    background-color: #ffff99;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: 500;
+}
+
+span.highlight-text:before {
+    content: "[";
+    color: #999;
+}
+
+span.highlight-text:after {
+    content: "]";
+    color: #999;
+}
+
+span.car-brand {
+    color: #0275d8;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+span.car-brand:before {
+    content: "🏎️ ";
+}
+
+span.tech-term {
+    font-style: italic;
+    color: #d9534f;
+    background-color: rgba(217, 83, 79, 0.05);
+    padding: 2px 4px;
+    border-radius: 2px;
+}
+
+span.tech-term:before {
+    content: "◆ ";
+}
+
+span.tech-term:after {
+    content: " ◆";
+}
+
+
+.section-header {
+    position: relative;
+    padding-left: 30px;
+    margin-top: 30px;
+}
+
+.section-header:before {
+    content: "§";
+    position: absolute;
+    left: 0;
+    color: #0275d8;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.section-header:after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, #0275d8, transparent);
+    margin-top: 10px;
+}
+
+
+.content-wrapper {
+    position: relative;
+    padding: 20px;
+}
+
+.featured-content {
+    position: relative;
+    background-color: #f0f0f0;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    border-left: 4px solid #0275d8;
+}
+
+.featured-content:first-child {
+    margin-top: 0;
+}
+
+.featured-content:before {
+    content: "★ Main Highlight";
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    background-color: white;
+    padding: 0 8px;
+    color: #0275d8;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+
+main > .content-wrapper > h2:first-child {
+    font-size: 2.5em;
+    font-weight: 900;
+    color: white;
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 50%, #c92a2a 100%);
+    padding: 25px 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+    text-shadow: 0 3px 8px rgba(0, 0, 0, 0.35);
+    letter-spacing: 1px;
+    margin: 20px 0 30px 0 !important;
+    border-left: 6px solid rgba(255, 255, 255, 0.5);
+    transform: skewY(0deg);
+}
+
+main > .content-wrapper > h2:first-child:before {
+    content: "🚀 ";
+    display: inline-block;
+    margin-right: 10px;
+}
+
+main > .content-wrapper > h2:first-child:after {
+    content: " 🚀";
+    display: inline-block;
+    margin-left: 10px;
+}
+
+main > .content-wrapper > h2:first-child:hover {
+    transform: skewY(-2deg) scale(1.05);
+    box-shadow: 0 12px 35px rgba(255, 107, 107, 0.55);
 }
