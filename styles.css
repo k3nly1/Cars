@@ -2,7 +2,7 @@
 
 body {
     background-color: #f5f5f5;
-    background-image: url('images/background.jpg');
+
     background-attachment: fixed;
     background-size: cover;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -844,7 +844,7 @@ span.tech-term:after {
 
 
 .content-wrapper {
-    
+    position: relative;
     padding: 20px;
 }
 

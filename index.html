@@ -5,6 +5,7 @@
 	<meta name="author" content="Author: Lipesiy Maksim">
 	<title>Cars — Home</title>
 	<link rel="stylesheet" href="styles.css">
+	<script src="script.js"></script>
 </head>
 <body>
 	<header>
@@ -96,7 +97,140 @@
 			<li>Visit <a href="https://www.autotrader.com" target="_blank" style="color: #0275d8; text-decoration: none; font-weight: 500;">AutoTrader</a> for vehicle listings</li>
 		</ul>
 
-	</main>
-	<footer>
-		<p>Author: Lipesiy Maksim</p>
-		<p><a href="#top" style="color: #0275d8; text-decoration: none; font-weight: 500;">Back to Top</a></p>
+		<!-- =============================================== -->
+        <!-- ІНТЕРАКТИВНІ ІНСТРУМЕНТИ САЙТУ -->
+        <!-- =============================================== -->
+        <section id="interactive-tools" style="margin-top: 40px;">
+
+            <!-- 1. ОПИТУВАННЯ КОРИСТУВАЧА -->
+            <div style="margin-bottom: 30px; padding: 20px; background-color: #e3f2fd; border-radius: 8px; border-left: 5px solid #0275d8;">
+                <h3 style="color: #0275d8; margin-top: 0;">❓ Survey: Your car preferences</h3>
+                <p style="color: #666; margin-bottom: 15px;">Tell us about yourself and your car preferences. This will help us better tailor information for you.</p>
+                <button onclick="userDialog()" style="padding: 12px 20px; background-color: #0275d8; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 14px;">▶ Start Survey</button>
+            </div>
+
+            <!-- 2. ПОРІВНЯННЯ БРЕНДІВ -->
+            <div style="margin-bottom: 30px; padding: 20px; background-color: #fff3e0; border-radius: 8px; border-left: 5px solid #ff9800;">
+                <h3 style="color: #ff9800; margin-top: 0;">⚖️ Compare two car brands</h3>
+                <p style="color: #666; margin-bottom: 15px;">Enter two car brands (e.g., BMW and Mercedes). The system will determine which brand has a longer name.</p>
+                <div style="display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap;">
+                    <input type="text" id="brand1-input" placeholder="First brand (e.g., BMW)" style="padding: 10px; border: 2px solid #ff9800; border-radius: 5px; flex: 1; min-width: 150px;" value="BMW">
+                    <input type="text" id="brand2-input" placeholder="Second brand (e.g., Mercedes)" style="padding: 10px; border: 2px solid #ff9800; border-radius: 5px; flex: 1; min-width: 150px;" value="Mercedes">
+                    <button onclick="let b1 = document.getElementById('brand1-input').value || 'BMW'; let b2 = document.getElementById('brand2-input').value || 'Mercedes'; compareStrings(b1, b2);" style="padding: 10px 20px; background-color: #ff9800; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">Compare</button>
+                </div>
+                <p id="brand-result" style="color: #666; font-style: italic; margin: 0;">Comparison result will appear here</p>
+            </div>
+
+            <!-- 3. ТЕМНИЙ РЕЖИМ / КОНТРАСТНА ТЕМА -->
+            <div style="margin-bottom: 30px; padding: 20px; background-color: #f3e5f5; border-radius: 8px; border-left: 5px solid #9c27b0;">
+                <h3 style="color: #9c27b0; margin-top: 0;">🌓 Contrast theme (30 seconds)</h3>
+                <p style="color: #666; margin-bottom: 15px;">Click the button below to switch the site to contrast mode. The mode will automatically turn off after 30 seconds.</p>
+                <button onclick="changeBgFor30Seconds()" style="padding: 12px 20px; background-color: #9c27b0; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 14px;">▶ Enable contrast theme</button>
+            </div>
+
+            <!-- 4. УЛЮБЛЕНІ АВТОМОБІЛІ (DOM-маніпуляції) -->
+            <div style="margin-bottom: 30px; padding: 20px; background-color: #e8f5e9; border-radius: 8px; border-left: 5px solid #4caf50;">
+                <h3 style="color: #4caf50; margin-top: 0;">❤️ My favorite cars</h3>
+                <p style="color: #666; margin-bottom: 15px;">Add your favorite car models to the list. You can add, remove, and view your choices.</p>
+                <div style="display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap;">
+                    <input type="text" id="car-name-input" placeholder="Enter car model (e.g., Tesla Model 3)" style="padding: 10px; border: 2px solid #4caf50; border-radius: 5px; flex: 1; min-width: 200px;">
+                    <button onclick="addCarToFavorites()" style="padding: 10px 20px; background-color: #4caf50; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">+ Add</button>
+                </div>
+                <div id="favorites-list" style="background-color: #f1f8e9; padding: 15px; border-radius: 5px; border: 1px solid #c5e1a5;">
+                    <p style="color: #666; font-style: italic; margin: 0;" id="empty-favorites-msg">No favorite cars yet. Add your first one!</p>
+                    <ul id="favorites-items" style="list-style: none; padding: 0; margin: 0;"></ul>
+                </div>
+            </div>
+
+            <!-- 5. ПОШУК ПО МАРКАМ -->
+            <div style="margin-bottom: 30px; padding: 20px; background-color: #e0f2f1; border-radius: 8px; border-left: 5px solid #009688;">
+                <h3 style="color: #009688; margin-top: 0;">🔍 Search models by brand</h3>
+                <p style="color: #666; margin-bottom: 15px;">Select a car brand and view available models.</p>
+                <div style="display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap;">
+                    <select id="brand-select" style="padding: 10px; border: 2px solid #009688; border-radius: 5px; flex: 1; min-width: 150px;">
+                        <option value="">-- Select brand --</option>
+                        <option value="BMW">BMW</option>
+                        <option value="Mercedes">Mercedes-Benz</option>
+                        <option value="Audi">Audi</option>
+                        <option value="Volkswagen">Volkswagen</option>
+                        <option value="Tesla">Tesla</option>
+                        <option value="Toyota">Toyota</option>
+                    </select>
+                    <button onclick="searchModelsByBrand()" style="padding: 10px 20px; background-color: #009688; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">Search</button>
+                </div>
+                <div id="models-result" style="background-color: #b2dfdb; padding: 15px; border-radius: 5px; display: none;">
+                    <h4 id="models-title" style="color: #004d40; margin-top: 0;">Models:</h4>
+                    <p id="models-list" style="color: #333; margin: 0;"></p>
+                </div>
+            </div>
+
+            <!-- 6. ІНФОРМАЦІЯ ПРО РОЗРОБНИКА -->
+            <div style="margin-bottom: 30px; padding: 20px; background-color: #fbe9e7; border-radius: 8px; border-left: 5px solid #d84315;">
+                <h3 style="color: #d84315; margin-top: 0;">👨‍💻 About the developer</h3>
+                <p style="color: #666; margin-bottom: 15px;">Learn more about the developer of this website and his contact information.</p>
+                <button onclick="showDeveloperInfo('Lipesiy', 'Maksim')" style="padding: 12px 20px; background-color: #d84315; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 14px;">▶ Show information</button>
+            </div>
+
+            <!-- 7. НАВІГАЦІЯ САЙТОМ -->
+            <div style="margin-bottom: 30px; padding: 20px; background-color: #eceff1; border-radius: 8px; border-left: 5px solid #455a64;">
+                <h3 style="color: #455a64; margin-top: 0;">🚗 Go to other sections</h3>
+                <p style="color: #666; margin-bottom: 15px;">Stop exploring and navigate to the sections with diesel and electric cars.</p>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <button onclick="redirectToDiesel()" style="padding: 10px 20px; background-color: #455a64; color: white; border: none; border-radius: 5px; cursor: pointer;">→ Diesel cars</button>
+                    <button onclick="redirectToEV()" style="padding: 10px 20px; background-color: #455a64; color: white; border: none; border-radius: 5px; cursor: pointer;">→ Electric cars</button>
+                    <button onclick="redirectToBrands()" style="padding: 10px 20px; background-color: #455a64; color: white; border: none; border-radius: 5px; cursor: pointer;">→ Car brands</button>
+                </div>
+            </div>
+
+            <!-- 9. CAR FEATURES (after, createElement, createTextNode) -->
+            <div style="margin-bottom: 30px; padding: 20px; background-color: #e0f2f1; border-radius: 8px; border-left: 5px solid #00897b;">
+                <h3 style="color: #00897b; margin-top: 0;">💫 Car Features (Mark as Liked)</h3>
+                <p style="color: #666; margin-bottom: 15px;">Click on features you like. </p>
+                <div id="features-list" style="background-color: #b2dfdb; padding: 15px; border-radius: 5px; border: 1px solid #4db6ac;">
+                    <p id="feature-1" style="padding: 10px; background-color: #e0f2f1; margin-bottom: 8px; border-radius: 3px; cursor: pointer;" onclick="markFeatureAsLiked('feature-1')">🔧 Advanced Safety Systems</p>
+                    <p id="feature-2" style="padding: 10px; background-color: #e0f2f1; margin-bottom: 8px; border-radius: 3px; cursor: pointer;" onclick="markFeatureAsLiked('feature-2')">🎵 Premium Sound System</p>
+                    <p id="feature-3" style="padding: 10px; background-color: #e0f2f1; margin-bottom: 0px; border-radius: 3px; cursor: pointer;" onclick="markFeatureAsLiked('feature-3')">⚡ Fast Charging (EV)</p>
+                </div>
+            </div>
+
+            <!-- 10. CAR SPECS (replaceWith, createElement, createTextNode) -->
+            <div style="margin-bottom: 30px; padding: 20px; background-color: #e8f5e9; border-radius: 8px; border-left: 5px solid #388e3c;">
+                <h3 style="color: #388e3c; margin-top: 0;">⚙️ Car Specifications (Click to Edit)</h3>
+                <p style="color: #666; margin-bottom: 15px;">Click on any specification to edit it. </p>
+                <div id="specs-list" style="background-color: #f1f8e9; padding: 15px; border-radius: 5px; border: 1px solid #c5e1a5;">
+                    <p id="spec-1" style="padding: 10px; background-color: #e3f2fd; border-left: 4px solid #2196f3; border-radius: 3px; cursor: pointer; margin-bottom: 8px;" onclick="editCarSpec('spec-1')">📋 Engine: 3.0L V6 Turbo</p>
+                    <p id="spec-2" style="padding: 10px; background-color: #e3f2fd; border-left: 4px solid #2196f3; border-radius: 3px; cursor: pointer; margin-bottom: 8px;" onclick="editCarSpec('spec-2')">📋 Horsepower: 450 HP</p>
+                    <p id="spec-3" style="padding: 10px; background-color: #e3f2fd; border-left: 4px solid #2196f3; border-radius: 3px; cursor: pointer; margin-bottom: 0px;" onclick="editCarSpec('spec-3')">📋 0-60 mph: 4.5 seconds</p>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- ВНУТРІШНІ СКРИПТИ -->
+    <script>
+
+        alert("Page loaded! Welcome to World of Cars! 🚗");
+
+
+        let visitorName = prompt("What is your name, dear visitor?", "Guest");
+        if (visitorName === null) {
+            visitorName = "Guest";
+        }
+        if (visitorName.trim() === "") {
+            visitorName = "Anonymous";
+        }
+
+
+        let likesCars = confirm("Do you like cars? Click OK for Yes, Cancel for No.");
+        let userMessage = likesCars ? "Great! You're in the right place!" : "No problem! But you're still welcome to explore.";
+
+    </script>
+
+    <footer>
+        <p>Author: Lipesiy Maksim | Developer</p>
+        <p style="margin-top: 8px;">
+            <a href="#top" style="color: #0275d8; text-decoration: none; font-weight: 500;">⬆ Back to Top</a>
+        </p>
+    </footer>
