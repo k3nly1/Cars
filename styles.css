@@ -905,3 +905,56 @@ main > .content-wrapper > h2:first-child:hover {
     transform: skewY(-2deg) scale(1.05);
     box-shadow: 0 12px 35px rgba(255, 107, 107, 0.55);
 }
+
+/* ============================================ */
+/* CSS ДЛЯ РОБОТИ З ПОДІЯМИ МИШІ */
+/* ============================================ */
+
+/* Кнопки для демонстрації подій миші */
+button {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Стиль для списку з підсвічуванням */
+#interactive-list {
+    user-select: none;
+}
+
+#interactive-list li {
+    border-radius: 3px;
+    margin-bottom: 1px;
+}
+
+#interactive-list li:hover {
+    background-color: #f0f4c3 !important;
+}
+
+/* Стиль для меню з паттерном Поведінка */
+#behavior-menu button {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+#behavior-menu button:active {
+    transform: scale(0.95);
+}
+
+/* Анімація для button при наведенні */
+#behavior-menu button {
+    box-shadow: 0 2px 8px rgba(25, 118, 210, 0.3);
+}
+
+#behavior-menu button:hover {
+    box-shadow: 0 4px 16px rgba(25, 118, 210, 0.5);
+}

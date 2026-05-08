@@ -121,7 +121,7 @@
                 <p id="brand-result" style="color: #666; font-style: italic; margin: 0;">Comparison result will appear here</p>
             </div>
 
-            <!-- 3. ТЕМНИЙ РЕЖИМ / КОНТРАСТНА ТЕМА -->
+            <!-- 3. КОНТРАСТНА ТЕМА -->
             <div style="margin-bottom: 30px; padding: 20px; background-color: #f3e5f5; border-radius: 8px; border-left: 5px solid #9c27b0;">
                 <h3 style="color: #9c27b0; margin-top: 0;">🌓 Contrast theme (30 seconds)</h3>
                 <p style="color: #666; margin-bottom: 15px;">Click the button below to switch the site to contrast mode. The mode will automatically turn off after 30 seconds.</p>
@@ -204,29 +204,151 @@
                 </div>
             </div>
 
+          
+           
+           
+
+            <div style="margin-top: 40px; padding: 20px; background-color: #f3e5f5; border-radius: 8px; border-left: 5px solid #7b1fa2;">
+                <h2 style="color: #7b1fa2; margin-top: 0;">🖱️ PART 1: Car Selection Events</h2>
+                <p style="color: #666; margin-bottom: 15px;">Demonstrate various mouse event handling methods for vehicle selection and configuration.</p>
+                
+                <!-- 1.1 Handler via HTML Attribute -->
+                <div style="margin-bottom: 20px; padding: 15px; background-color: #ede7f6; border-radius: 5px;">
+                    <h3 style="color: #512da8; margin-top: 0;">1.1 Select Vehicle</h3>
+                    <p style="color: #666; margin-bottom: 10px;">Click to view vehicle details and mouse coordinates:</p>
+                    
+                    <button id="btn-property" 
+                            onclick="selectCarHandler(event)" 
+                            style="padding: 10px 20px; background-color: #7b1fa2; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 14px; font-weight: bold; transition: all 0.3s;">
+                        🚗 View Selected Vehicle
+                    </button>
+                </div>
+
+                <!-- 1.2 Handlers via Properties -->
+                <div style="margin-bottom: 20px; padding: 15px; background-color: #ede7f6; border-radius: 5px;">
+                    <h3 style="color: #512da8; margin-top: 0;">1.2 Vehicle Action</h3>
+                    
+                    <button id="btn-multiple-listeners" 
+                            style="padding: 10px 20px; background-color: #512da8; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 14px; font-weight: bold;">
+                        📅 Execute All Actions
+                    </button>
+
+                    <div id="multiple-listeners-log" style="margin-top: 15px; padding: 10px; background: white; border-left: 4px solid #512da8; min-height: 40px;">
+                        <span style="color: #999;">Результат з'явиться тут...</span>
+                    </div>
+                </div>
+
+                <!-- 1.3 Multiple Listeners -->
+                <div style="margin-bottom: 20px; padding: 15px; background-color: #e3f2fd; border-radius: 5px; border: 1px solid #bbdefb;">
+                    <h3 style="color: #1565c0; margin-top: 0;">1.3 Vehicle Configuration Handler</h3>
+                    <p style="color: #666; margin-bottom: 10px;">Select configuration options below:</p>
+    
+                <button id="btn-handle-event" 
+                    style="padding: 10px 20px; background-color: #1976d2; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 14px; font-weight: bold;">
+                        ⚙️ Configure Vehicle
+                </button>
+
+                <div id="config-log" style="margin-top: 15px; padding: 10px; background: white; border-radius: 4px; border: 1px dashed #90caf9; min-height: 50px; font-family: monospace; font-size: 13px;">
+                    <span style="color: #999;">Result will appear here...</span>
+                    </div>
+                </div>
+                <!-- 1.5 removeEventListener -->
+                <div style="margin-bottom: 20px; padding: 15px; background-color: #ede7f6; border-radius: 5px;">
+                    <h3 style="color: #512da8; margin-top: 0;">1.4 Watchlist Toggle</h3>
+                    
+                    <button id="target-car-button" style="padding: 10px; margin-bottom: 10px; background: #eee; border: 1px solid #ccc; cursor: pointer;">
+                        🔎 Check Car Details (Target)
+                    </button>
+
+                    <div style="display: flex; gap: 10px;">
+                        <button id="add-listener-btn" style="padding: 10px; background-color: #7b1fa2; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                            ⭐ Activate Monitor
+                        </button>
+                        <button id="remove-listener-btn" style="padding: 10px; background-color: #c2185b; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                            ❌ Stop Monitor
+                        </button>
+                    </div>
+                    
+                    <div id="watchlist-status" style="margin-top: 10px; font-style: italic; color: #666;"></div>
+                </div>
+    
+                <div id="watchlist-status" style="margin-top: 10px; font-style: italic; color: #666;"></div>
+            </div>
+                <div id="watchlist-status" style="margin-top: 10px; font-style: italic; color: #666;"></div>
+            </div>
+
+           
+            
+          
+
+            <div style="margin-top: 40px; padding: 20px; background-color: #e8f5e9; border-radius: 8px; border-left: 5px solid #388e3c;">
+                <h2 style="color: #388e3c; margin-top: 0;">🏎️ PART 2: Select Your Vehicle Type </h2>
+                <p style="color: #666; margin-bottom: 15px;">Click any vehicle type to select it.</p>
+                
+                <ul id="interactive-list" 
+                    style="list-style-type: none; padding: 0; margin: 0; background-color: #f1f8e9; border-radius: 5px; border: 1px solid #388e3c; overflow: hidden;">
+                    <li style="padding: 12px 15px; background-color: #fff9c4; border-bottom: 1px solid #c5e1a5; cursor: pointer; transition: all 0.3s;">🚗 Sedan - Comfortable daily driving</li>
+                    <li style="padding: 12px 15px; background-color: #fff9c4; border-bottom: 1px solid #c5e1a5; cursor: pointer; transition: all 0.3s;">🚙 SUV - Spacious adventure vehicle</li>
+                    <li style="padding: 12px 15px; background-color: #fff9c4; border-bottom: 1px solid #c5e1a5; cursor: pointer; transition: all 0.3s;">🏎️ Coupe - High-performance sports</li>
+                    <li style="padding: 12px 15px; background-color: #fff9c4; border-bottom: 1px solid #c5e1a5; cursor: pointer; transition: all 0.3s;">⚡ Electric - Zero emissions future</li>
+                    <li style="padding: 12px 15px; background-color: #fff9c4; cursor: pointer; transition: all 0.3s;">🔋 Hybrid - Efficiency combined</li>
+                </ul>
+
+                <style>
+                    #interactive-list li.highlighted {
+                        background-color: #4caf50 !important;
+                        color: white;
+                        font-weight: bold;
+                        box-shadow: inset 0 0 10px rgba(56, 142, 60, 0.3);
+                    }
+                </style>
+
+                
+            </div>
+
+        
+
+            <div style="margin-top: 40px; padding: 20px; background-color: #e3f2fd; border-radius: 8px; border-left: 5px solid #1976d2;">
+                <h2 style="color: #1976d2; margin-top: 0;">🛠️ PART 3: Vehicle Portal Menu </h2>
+                
+                <div id="behavior-menu" 
+                     style="display: flex; flex-wrap: wrap; gap: 10px; padding: 15px; background-color: #bbdefb; border-radius: 5px; border: 1px solid #64b5f6;">
+                    <button data-action="compareCars" 
+                            style="padding: 10px 15px; background-color: #1976d2; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 14px; font-weight: bold; transition: all 0.3s;"
+                            onmouseover="this.style.backgroundColor='#1565c0'" 
+                            onmouseout="this.style.backgroundColor='#1976d2'">
+                        🔍 Compare
+                    </button>
+                
+                    <button data-action="vehicleSettings" 
+                            style="padding: 10px 15px; background-color: #1976d2; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 14px; font-weight: bold; transition: all 0.3s;"
+                            onmouseover="this.style.backgroundColor='#1565c0'" 
+                            onmouseout="this.style.backgroundColor='#1976d2'">
+                        ⚙️ Preferences
+                    </button>
+                    <button data-action="aboutVehicles" 
+                            style="padding: 10px 15px; background-color: #1976d2; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 14px; font-weight: bold; transition: all 0.3s;"
+                            onmouseover="this.style.backgroundColor='#1565c0'" 
+                            onmouseout="this.style.backgroundColor='#1976d2'">
+                        ℹ️ About Us
+                    </button>
+                    <button data-action="drivingTips" 
+                            style="padding: 10px 15px; background-color: #1976d2; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 14px; font-weight: bold; transition: all 0.3s;"
+                            onmouseover="this.style.backgroundColor='#1565c0'" 
+                            onmouseout="this.style.backgroundColor='#1976d2'">
+                        📚 Driving Tips
+                    </button>
+                </div>
+
+                
+            </div>
+
         </section>
 
     </main>
 
     <!-- ВНУТРІШНІ СКРИПТИ -->
-    <script>
-
-        alert("Page loaded! Welcome to World of Cars! 🚗");
-
-
-        let visitorName = prompt("What is your name, dear visitor?", "Guest");
-        if (visitorName === null) {
-            visitorName = "Guest";
-        }
-        if (visitorName.trim() === "") {
-            visitorName = "Anonymous";
-        }
-
-
-        let likesCars = confirm("Do you like cars? Click OK for Yes, Cancel for No.");
-        let userMessage = likesCars ? "Great! You're in the right place!" : "No problem! But you're still welcome to explore.";
-
-    </script>
+    
 
     <footer>
         <p>Author: Lipesiy Maksim | Developer</p>

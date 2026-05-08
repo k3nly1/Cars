@@ -286,25 +286,36 @@ function searchModelsByBrand() {
     }
 }
 
-// ============================================
+
 // DOM NODE MANIPULATION FUNCTIONS
-// ============================================
+
 
 // Функція редагування технічних характеристик (використовує replaceWith, createElement)
 function editCarSpec(specId) {
     let specElement = document.getElementById(specId);
     if (!specElement) return;
     
-    let currentText = specElement.textContent;
-    let newText = prompt("Edit specification:", currentText);
+    let currentText = specElement.textContent.replace("📋 ", "");
+    let newText = prompt("Редагувати характеристику (залиште порожнім, щоб видалити):", currentText);
     
     if (newText === null) return;
     
-    // Створюємо новий елемент
+    if (newText.trim() === "") {
+        if (confirm("Ви впевнені, що хочете видалити цю характеристику?")) {
+            specElement.outerHTML = ""; 
+            alert("🗑️ Характеристику видалено!");
+        }
+        return;
+    }
+    
     let newSpec = document.createElement("p");
-    let textNode = document.createTextNode("📋 " + newText);
+    
+    let textNode = document.createTextNode("");
+    textNode.nodeValue = "📋 " + newText.trim(); 
+    
     newSpec.appendChild(textNode);
     newSpec.id = specId;
+    
     newSpec.style.padding = "10px";
     newSpec.style.backgroundColor = "#e3f2fd";
     newSpec.style.borderLeft = "4px solid #2196f3";
@@ -312,36 +323,285 @@ function editCarSpec(specId) {
     newSpec.style.cursor = "pointer";
     newSpec.onclick = function() { editCarSpec(specId); };
     
-    // Замінюємо старий елемент новим (replaceWith)
     specElement.replaceWith(newSpec);
-    
-    alert("✅ Specification updated!");
+    alert("✅ Характеристику оновлено!");
 }
 
-// Функція для додавання позначок до функцій (використовує after, createElement, createTextNode)
+// Функція для додавання позначок до функцій
 function markFeatureAsLiked(featureId) {
     let featureElement = document.getElementById(featureId);
     if (!featureElement) return;
     
-    // Перевіряємо, чи вже додано позначку
     if (featureElement.classList.contains("liked")) {
         alert("You already liked this feature!");
         return;
     }
     
-    // Створюємо позначку
     let badge = document.createElement("span");
-    badge.textContent = " ❤️ LIKED!";
+    badge.innerHTML = " ❤️ <b>LIKED!</b>"; 
     badge.style.color = "#d32f2f";
-    badge.style.fontWeight = "bold";
     badge.style.marginLeft = "8px";
     
-    // Додаємо позначку після елемента (after)
     featureElement.after(badge);
-    
-    // Додаємо клас для відслідковування
     featureElement.classList.add("liked");
     
     alert("✅ Thank you for liking this feature!");
 }
 
+// ============================================
+// ЧАСТИНА 1: РОБОТА З ПОДІЯМИ МИШІ
+// ============================================
+
+// 1.1 Basic mouse event handlers - Vehicle selection theme
+function selectCarHandler(event) {
+    console.log("Car selection clicked!", event);
+    alert("🚗 Vehicle Selection Event Triggered!\n\nElement: " + event.target.tagName + 
+          "\nMouse Position: X=" + event.clientX + ", Y=" + event.clientY);
+}
+
+function carPreviewHandler(event) {
+    event.target.style.backgroundColor = "#a5bdc9";
+    event.target.style.transform = "scale(1.05)";
+    event.target.style.boxShadow = "0 4px 12px rgba(255, 193, 7, 0.5)";
+}
+
+function carPreviewLeaveHandler(event) {
+    event.target.style.backgroundColor = "";
+    event.target.style.transform = "scale(1)";
+    event.target.style.boxShadow = "";
+}
+
+function carSelectDownHandler(event) {
+    console.log("Car selection initiated at:", event.clientX, event.clientY);
+    event.target.style.opacity = "0.7";
+    event.target.textContent = "🔒 Selecting...";
+}
+
+function carSelectUpHandler(event) {
+    console.log("Car selection completed at:", event.clientX, event.clientY);
+    event.target.style.opacity = "1";
+    event.target.textContent = "Select This Car Model";
+}
+
+// 1.2 Additional handlers for addEventListener - Vehicle action listeners
+function viewCarSpecsListener(event) {
+    const log = document.getElementById("multiple-listeners-log");
+    log.innerHTML += `<div style="color: #4a148c; margin-bottom: 3px;">✅ <b>Listener 1:</b> Specifications data loaded.</div>`;
+    console.log("✅ Listener 1: Specs displayed");
+}
+
+function checkAvailabilityListener(event) {
+    const log = document.getElementById("multiple-listeners-log");
+    log.innerHTML += `<div style="color: #7b1fa2; margin-bottom: 3px;">✅ <b>Listener 2:</b> Stock status: 5 units available.</div>`;
+    console.log("✅ Listener 2: Availability checked");
+}
+
+function requestTestDriveListener(event) {
+    const log = document.getElementById("multiple-listeners-log");
+    log.innerHTML += `<div style="color: #9c27b0; margin-bottom: 3px;">✅ <b>Listener 3:</b> Test drive request initiated!</div>`;
+    console.log("✅ Listener 3: Test drive requested");
+}
+
+// 1.3 Object with handleEvent method - Vehicle configuration handler
+const carConfigurationHandler = {
+    handleEvent: function(event) {
+       
+        const logContainer = document.getElementById("config-log");
+        
+       
+        const timestamp = new Date().toLocaleTimeString();
+        
+        const htmlMessage = `
+            <div style="color: #2e7d32; font-weight: bold; margin-bottom: 5px;">🚗 CONFIGURATION ACTIVATED (${timestamp})</div>
+            <ul style="margin: 0; padding-left: 20px; list-style-type: square;">
+                <li><strong>Event:</strong> ${event.type}</li>
+                <li><strong>Container ID:</strong> ${event.currentTarget.id}</li>
+                <li><strong>Element:</strong> &lt;${event.target.tagName.toLowerCase()}&gt;</li>
+            </ul>
+            <p style="margin-top: 5px; color: #1565c0;">✔ You selected a vehicle configuration option!</p>
+        `;
+
+        
+        logContainer.innerHTML = htmlMessage;
+        
+    
+        console.log("🚗 Car configuration updated on page");
+    }
+};
+
+// 1.4 Function to demonstrate removeEventListener - Vehicle watchlist feature
+// 1. ОДИНАРНА функція-обробник
+function toggleWatchlistHandler(event) {
+    const status = document.getElementById("watchlist-status");
+    if (status) {
+        status.innerHTML = "⭐ <b style='color: #7b1fa2;'>Monitoring active:</b> Searching for price drops...";
+    }
+    console.log("⭐ Watchlist handler triggered - vehicle monitoring active");
+}
+
+// 2. Функція для додавання прослуховувача
+function setupRemoveEventListenerDemo() {
+    
+    const targetButton = document.getElementById("target-car-button");
+    const status = document.getElementById("watchlist-status");
+
+    if (!targetButton) return;
+    
+    targetButton.addEventListener("click", toggleWatchlistHandler);
+    
+    console.log("✅ Watchlist listener added");
+    if (status) status.innerText = "✅ Monitor ACTIVATED for the button above.";
+}
+
+// 3. Функція для видалення прослуховувача
+function removeEventListenerDemo() {
+  
+    const targetButton = document.getElementById("target-car-button");
+    const status = document.getElementById("watchlist-status");
+
+    if (!targetButton) return;
+    
+    targetButton.removeEventListener("click", toggleWatchlistHandler);
+    
+    console.log("❌ Watchlist listener removed");
+    if (status) status.innerText = "❌ Monitor DEACTIVATED. Click no longer works.";
+}
+
+// 4. Ініціалізація (прив'язуємо функції до кнопок "Add" та "Remove")
+document.addEventListener("DOMContentLoaded", function() {
+    const addBtn = document.getElementById("add-listener-btn");
+    const removeBtn = document.getElementById("remove-listener-btn");
+
+    if (addBtn) addBtn.onclick = setupRemoveEventListenerDemo;
+    if (removeBtn) removeBtn.onclick = removeEventListenerDemo;
+});
+
+// Ініціалізація обробників при завантаженні сторінки
+document.addEventListener("DOMContentLoaded", function() {
+    
+    
+    const carSelectBtn = document.getElementById("btn-property");
+    if (carSelectBtn) {
+        carSelectBtn.onmouseover = carPreviewHandler;
+        carSelectBtn.onmouseout = carPreviewLeaveHandler;
+        carSelectBtn.onmousedown = carSelectDownHandler;
+        carSelectBtn.onmouseup = carSelectUpHandler;
+    }
+    
+    
+    const compareCarBtn = document.getElementById("btn-multiple-listeners");
+    if (compareCarBtn) {
+        compareCarBtn.addEventListener("click", viewCarSpecsListener);
+        compareCarBtn.addEventListener("click", checkAvailabilityListener);
+        compareCarBtn.addEventListener("click", requestTestDriveListener);
+      
+    }
+    
+    
+    const configureBtn = document.getElementById("btn-handle-event");
+    if (configureBtn) {
+        configureBtn.addEventListener("click", carConfigurationHandler);
+    }
+    
+
+});
+
+
+// ============================================
+// PART 2: VEHICLE TYPE SELECTION
+// ============================================
+
+// 2.1 Initialize vehicle type highlighting with event.target
+function initVehicleTypeSelection() {
+    const vehicleList = document.getElementById("interactive-list");
+    if (!vehicleList) return;
+    
+    
+    vehicleList.onclick = function(event) {
+        
+        const selectedVehicle = event.target;
+        
+       
+        if (selectedVehicle.tagName === "LI") {
+            
+            const previousSelection = vehicleList.querySelector(".highlighted");
+            if (previousSelection) {
+                previousSelection.classList.remove("highlighted");
+            }
+            
+            
+            selectedVehicle.classList.add("highlighted");
+            
+            console.log("Selected vehicle type:", selectedVehicle.textContent);
+            console.log("event.target:", event.target.textContent);
+            console.log("event.currentTarget (list container):", event.currentTarget.id);
+        }
+    };
+}
+
+
+// ============================================
+// PART 3: VEHICLE PORTAL MENU (BEHAVIOR PATTERN)
+// ============================================
+
+// 3.1 Vehicle action methods mapped to menu buttons
+const vehicleActions = {
+    compareCars: function() {
+        alert("🔍 Car Comparison Tool\n\nCompare specs, prices, and features of multiple vehicles to find the perfect match!");
+        console.log("Compare cars method called");
+    },
+    
+    filterByBrand: function() {
+        alert("🏷️ Filter by Brand\n\nFilter vehicles by manufacturer: BMW, Mercedes, Tesla, Toyota, and more!");
+        console.log("Filter by brand method called");
+    },
+    
+    vehicleSettings: function() {
+        alert("⚙️ Vehicle Preferences\n\nCustomize your search:\n- Engine type (Petrol, Diesel, Electric, Hybrid)\n- Price range\n- Body type (Sedan, SUV, Coupe)\n- Transmission type");
+        console.log("Vehicle settings method called");
+    },
+    
+    aboutVehicles: function() {
+        alert("ℹ️ About World of Cars\n\n🌍 Premium Automotive Portal\nVersion 1.0\n\nYour comprehensive source for car information, comparisons, and reviews.");
+        console.log("About vehicles method called");
+    },
+    
+    drivingTips: function() {
+        alert("📚 Driving Tips & Guide\n\nLearn about:\n✓ Fuel efficiency tips\n✓ Vehicle maintenance\n✓ Eco-driving practices\n✓ Safety features explained");
+        console.log("Driving tips method called");
+    }
+};
+
+// 3.2 Initialize menu with Behavior pattern using data-* attributes
+function initVehicleActionMenu() {
+    const menu = document.getElementById("behavior-menu");
+    if (!menu) return;
+    
+    
+    menu.addEventListener("click", function(event) {
+        
+        const actionButton = event.target;
+        
+        
+        if (actionButton.tagName === "BUTTON" && actionButton.hasAttribute("data-action")) {
+            
+            const actionName = actionButton.getAttribute("data-action");
+            
+            console.log("Vehicle action triggered:", actionName);
+            console.log("Menu container:", event.currentTarget.id);
+            
+           
+            if (typeof vehicleActions[actionName] === "function") {
+                vehicleActions[actionName]();
+            } else {
+                alert("⚠️ Unknown action: " + actionName);
+            }
+        }
+    });
+}
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    initVehicleTypeSelection();
+    initVehicleActionMenu();
+});
