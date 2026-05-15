@@ -958,3 +958,272 @@ button:active {
 #behavior-menu button:hover {
     box-shadow: 0 4px 16px rgba(25, 118, 210, 0.5);
 }
+
+/* ============================================ */
+/* CSS ДЛЯ MOUSEOVER/MOUSEOUT ПОДІЙ */
+/* ============================================ */
+
+#hover-items-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    padding: 15px;
+    background-color: #f8bbd0;
+    border-radius: 5px;
+}
+
+.hover-item {
+    padding: 20px;
+    background-color: #fff;
+    border: 2px solid #e91e63;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.hover-item:hover {
+    background-color: #e91e63;
+    color: white;
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: 0 8px 16px rgba(233, 30, 99, 0.4);
+}
+
+.hover-item div:first-child {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.hover-item div:nth-child(2) {
+    font-weight: bold;
+    color: #c2185b;
+    margin-bottom: 5px;
+}
+
+.hover-item:hover div:nth-child(2) {
+    color: white;
+}
+
+.hover-item div:last-child {
+    font-size: 12px;
+    color: #999;
+}
+
+.hover-item:hover div:last-child {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+#hover-log {
+    margin-top: 15px;
+    padding: 15px;
+    background-color: #fff;
+    border-left: 4px solid #c2185b;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+#hover-log div {
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+/* ============================================ */
+/* CSS ДЛЯ DRAG AND DROP */
+/* ============================================ */
+
+#drag-items {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 15px;
+    background-color: #b2dfdb;
+    border-radius: 5px;
+}
+
+.draggable-car {
+    padding: 15px 20px;
+    background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+    color: white;
+    border-radius: 8px;
+    cursor: move;
+    user-select: none;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.draggable-car:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.draggable-car:active {
+    cursor: grabbing;
+    opacity: 0.8;
+}
+
+.drop-zone {
+    min-height: 150px;
+    padding: 15px;
+    background-color: #fff9c4;
+    border: 3px dashed #fbc02d;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    color: #f57f17;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.drop-zone:hover {
+    background-color: #fffbea;
+    border-color: #f57f17;
+    box-shadow: 0 4px 8px rgba(245, 127, 23, 0.2);
+}
+
+.drop-zone.drag-over {
+    background-color: #fff59d;
+    border-color: #f57f17;
+    box-shadow: 0 6px 12px rgba(245, 127, 23, 0.3);
+    transform: scale(1.02);
+}
+
+.drop-zone div:first-child {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.drop-zone div:nth-child(2) {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.drop-zone div:last-child {
+    font-size: 12px;
+    color: #999;
+    margin-top: 5px;
+}
+
+.zone-cars-list {
+    list-style: none;
+    padding: 10px 0;
+    margin: 10px 0 0 0;
+    text-align: left;
+    border-top: 2px solid currentColor;
+    width: 100%;
+}
+
+.zone-cars-list li {
+    padding: 8px;
+    margin: 5px 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 4px;
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+}
+
+.zone-cars-list li:hover {
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.zone-cars-list li span {
+    font-weight: bold;
+    color: #333;
+}
+
+.zone-cars-list li button {
+    padding: 2px 8px;
+    font-size: 12px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: white;
+    font-weight: bold;
+}
+
+.zone-cars-list li button:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+    transform: none;
+}
+
+#drag-log {
+    padding: 15px;
+    background-color: #fff;
+    border-left: 4px solid #00897b;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+#drag-log div {
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+/* Стилі для перетягування */
+.dragging {
+    opacity: 0.5;
+    cursor: grabbing;
+}
+
+.drag-active {
+    cursor: grabbing;
+}
+
+/* Адаптивність для мобільних пристроїв */
+@media (max-width: 768px) {
+    #hover-items-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .drop-zone {
+        min-height: 120px;
+    }
+    
+    #drag-items {
+        flex-direction: column;
+    }
+    
+    .draggable-car {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    #hover-items-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .drop-zone div:first-child {
+        font-size: 24px;
+    }
+    
+    #drag-log, #hover-log {
+        font-size: 12px;
+        max-height: 150px;
+    }
+}

@@ -348,9 +348,7 @@ function markFeatureAsLiked(featureId) {
     alert("✅ Thank you for liking this feature!");
 }
 
-// ============================================
-// ЧАСТИНА 1: РОБОТА З ПОДІЯМИ МИШІ
-// ============================================
+
 
 // 1.1 Basic mouse event handlers - Vehicle selection theme
 function selectCarHandler(event) {
@@ -430,7 +428,7 @@ const carConfigurationHandler = {
 };
 
 // 1.4 Function to demonstrate removeEventListener - Vehicle watchlist feature
-// 1. ОДИНАРНА функція-обробник
+
 function toggleWatchlistHandler(event) {
     const status = document.getElementById("watchlist-status");
     if (status) {
@@ -439,7 +437,7 @@ function toggleWatchlistHandler(event) {
     console.log("⭐ Watchlist handler triggered - vehicle monitoring active");
 }
 
-// 2. Функція для додавання прослуховувача
+
 function setupRemoveEventListenerDemo() {
     
     const targetButton = document.getElementById("target-car-button");
@@ -453,7 +451,7 @@ function setupRemoveEventListenerDemo() {
     if (status) status.innerText = "✅ Monitor ACTIVATED for the button above.";
 }
 
-// 3. Функція для видалення прослуховувача
+
 function removeEventListenerDemo() {
   
     const targetButton = document.getElementById("target-car-button");
@@ -467,7 +465,7 @@ function removeEventListenerDemo() {
     if (status) status.innerText = "❌ Monitor DEACTIVATED. Click no longer works.";
 }
 
-// 4. Ініціалізація (прив'язуємо функції до кнопок "Add" та "Remove")
+
 document.addEventListener("DOMContentLoaded", function() {
     const addBtn = document.getElementById("add-listener-btn");
     const removeBtn = document.getElementById("remove-listener-btn");
@@ -476,7 +474,7 @@ document.addEventListener("DOMContentLoaded", function() {
     if (removeBtn) removeBtn.onclick = removeEventListenerDemo;
 });
 
-// Ініціалізація обробників при завантаженні сторінки
+
 document.addEventListener("DOMContentLoaded", function() {
     
     
@@ -507,9 +505,9 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-// ============================================
+
 // PART 2: VEHICLE TYPE SELECTION
-// ============================================
+
 
 // 2.1 Initialize vehicle type highlighting with event.target
 function initVehicleTypeSelection() {
@@ -540,9 +538,9 @@ function initVehicleTypeSelection() {
 }
 
 
-// ============================================
+
 // PART 3: VEHICLE PORTAL MENU (BEHAVIOR PATTERN)
-// ============================================
+
 
 // 3.1 Vehicle action methods mapped to menu buttons
 const vehicleActions = {
@@ -601,7 +599,220 @@ function initVehicleActionMenu() {
 }
 
 
+// ============================================
+// PART 5: DRAG AND DROP + MOUSE EVENTS
+// Використовує: event.target, event.relatedTarget,
+// mousedown, mousemove, mouseup, mouseover, mouseout
+// ============================================
+
+class DragAndDropManager {
+    constructor() {
+        this.draggedElement = null;
+        this.offsetX = 0;
+        this.offsetY = 0;
+    }
+    
+    init() {
+        this.setupHoverInteractions();
+        this.setupDraggableItems();
+        this.setupDropZones();
+    }
+    
+    // Налаштування hover-взаємодій (MOUSEOVER/MOUSEOUT)
+    setupHoverInteractions() {
+        const container = document.getElementById("hover-items-container");
+        if (!container) return;
+        
+        const hoverItems = container.querySelectorAll(".hover-item");
+        
+        hoverItems.forEach(item => {
+            // MOUSEOVER - елемент під мишкою (event.target)
+            item.addEventListener("mouseover", (event) => {
+                const target = event.target.closest(".hover-item");
+                
+                if (target) {
+                    const itemName = target.getAttribute("data-item");
+                    
+                    target.style.backgroundColor = "#e91e63";
+                    target.style.color = "white";
+                    target.style.transform = "scale(1.05) translateY(-5px)";
+                    target.style.boxShadow = "0 8px 16px rgba(233, 30, 99, 0.4)";
+                    target.style.borderColor = "#c2185b";
+                }
+            });
+            
+            // MOUSEOUT - елемент, який залишаємо (event.target), та елемент, на який переходимо (event.relatedTarget)
+            item.addEventListener("mouseout", (event) => {
+                const target = event.target.closest(".hover-item");
+                const relatedTarget = event.relatedTarget;
+                
+                if (target) {
+                    const itemName = target.getAttribute("data-item");
+                    
+                    target.style.backgroundColor = "#fff";
+                    target.style.color = "#c2185b";
+                    target.style.transform = "scale(1)";
+                    target.style.boxShadow = "none";
+                    target.style.borderColor = "#e91e63";
+                }
+            });
+        });
+    }
+    
+    // Налаштування drag-and-drop елементів (MOUSEDOWN/MOUSEMOVE/MOUSEUP)
+    setupDraggableItems() {
+        const dragItems = document.querySelectorAll(".draggable-car");
+        
+        dragItems.forEach(item => {
+            // MOUSEDOWN - початок перетягування
+            item.addEventListener("mousedown", (event) => {
+                this.draggedElement = event.target;
+                
+                const rect = item.getBoundingClientRect();
+                this.offsetX = event.clientX - rect.left;
+                this.offsetY = event.clientY - rect.top;
+                
+                item.style.opacity = "0.7";
+                item.style.cursor = "grabbing";
+                item.style.transform = "rotate(5deg)";
+                item.style.zIndex = "1000";
+                
+                document.addEventListener("mousemove", this.handleMouseMove.bind(this));
+            });
+        });
+    }
+    
+    // Обробник MOUSEMOVE
+    handleMouseMove = (event) => {
+        if (!this.draggedElement) return;
+        
+        this.draggedElement.style.position = "fixed";
+        this.draggedElement.style.pointerEvents = "none";
+        this.draggedElement.style.left = (event.clientX - this.offsetX) + "px";
+        this.draggedElement.style.top = (event.clientY - this.offsetY) + "px";
+        
+        const dropZones = document.querySelectorAll(".drop-zone");
+        dropZones.forEach(zone => {
+            const rect = zone.getBoundingClientRect();
+            const isOver = event.clientX >= rect.left && event.clientX <= rect.right &&
+                          event.clientY >= rect.top && event.clientY <= rect.bottom;
+            
+            if (isOver) {
+                zone.style.backgroundColor = "#fff9c4";
+                zone.style.borderColor = "#f57f17";
+                zone.style.transform = "scale(1.02)";
+            } else {
+                zone.style.backgroundColor = "";
+                zone.style.borderColor = "";
+                zone.style.transform = "scale(1)";
+            }
+        });
+    }
+    
+    // Налаштування drop-zones (MOUSEUP)
+    setupDropZones() {
+        const dropZones = document.querySelectorAll(".drop-zone");
+        
+        dropZones.forEach(zone => {
+            const zoneType = zone.getAttribute("data-zone");
+            
+            // MOUSEUP на drop-zone
+            zone.addEventListener("mouseup", (event) => {
+                if (!this.draggedElement) return;
+                
+                const carName = this.draggedElement.textContent.trim();
+                
+                this.addCarToZone(zone, carName, zoneType);
+                this.endDrag();
+            });
+        });
+        
+        // MOUSEUP на інших місцях
+        document.addEventListener("mouseup", (event) => {
+            if (this.draggedElement && !event.target.closest(".drop-zone")) {
+                this.endDrag();
+            }
+        });
+    }
+    
+    // Завершення перетягування
+    endDrag() {
+        if (!this.draggedElement) return;
+        
+        this.draggedElement.style.position = "";
+        this.draggedElement.style.left = "";
+        this.draggedElement.style.top = "";
+        this.draggedElement.style.opacity = "1";
+        this.draggedElement.style.cursor = "move";
+        this.draggedElement.style.transform = "";
+        this.draggedElement.style.zIndex = "";
+        this.draggedElement.style.pointerEvents = "";
+        
+        document.removeEventListener("mousemove", this.handleMouseMove.bind(this));
+        this.draggedElement = null;
+        
+        document.querySelectorAll(".drop-zone").forEach(zone => {
+            zone.style.backgroundColor = "";
+            zone.style.borderColor = "";
+            zone.style.transform = "scale(1)";
+        });
+    }
+    
+    // Додавання елемента до drop-zone
+    addCarToZone(zone, carName, zoneType) {
+        let list = zone.querySelector(".zone-cars-list");
+        if (!list) {
+            list = document.createElement("ul");
+            list.className = "zone-cars-list";
+            list.style.listStyle = "none";
+            list.style.padding = "10px 0";
+            list.style.margin = "10px 0 0 0";
+            list.style.textAlign = "left";
+            list.style.borderTop = "2px solid currentColor";
+            zone.appendChild(list);
+        }
+        
+        const listItem = document.createElement("li");
+        listItem.style.padding = "8px";
+        listItem.style.margin = "5px 0";
+        listItem.style.backgroundColor = "rgba(255, 255, 255, 0.8)";
+        listItem.style.borderRadius = "4px";
+        listItem.style.fontSize = "13px";
+        listItem.style.display = "flex";
+        listItem.style.justifyContent = "space-between";
+        listItem.style.alignItems = "center";
+        
+        const textSpan = document.createElement("span");
+        textSpan.textContent = carName;
+        textSpan.style.fontWeight = "bold";
+        
+        const removeBtn = document.createElement("button");
+        removeBtn.textContent = "✕";
+        removeBtn.style.padding = "2px 8px";
+        removeBtn.style.backgroundColor = "rgba(0,0,0,0.2)";
+        removeBtn.style.border = "none";
+        removeBtn.style.borderRadius = "3px";
+        removeBtn.style.cursor = "pointer";
+        removeBtn.style.fontSize = "12px";
+        removeBtn.onclick = () => listItem.remove();
+        
+        listItem.appendChild(textSpan);
+        listItem.appendChild(removeBtn);
+        list.appendChild(listItem);
+    }
+}
+
+// Глобальна інстанція
+let dragDropManager = null;
+
+function initDragAndDrop() {
+    dragDropManager = new DragAndDropManager();
+    dragDropManager.init();
+}
+
+
 document.addEventListener("DOMContentLoaded", function() {
     initVehicleTypeSelection();
     initVehicleActionMenu();
+    initDragAndDrop();
 });
